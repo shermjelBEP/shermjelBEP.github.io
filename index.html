@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Balanced Education Partners — K–6 Math Coaching for Indiana Schools</title>
+<meta name="description" content="We embed with Indiana K–6 leadership teams to improve math outcomes. Best for kids, sustainable for adults. Coaching plus EdScale platform included."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --ink:      hsl(215,45%,14%);
+  --ink-soft: hsl(215,45%,20%);
+  --cream:    hsl(42,38%,95%);
+  --cream-2:  hsl(42,30%,92%);
+  --card:     hsl(42,30%,99%);
+  --terra:    hsl(18,62%,56%);
+  --terra-d:  hsl(18,62%,46%);
+  --terra-l:  hsl(18,62%,66%);
+  --gold:     hsl(43,65%,54%);
+  --ink-muted:hsl(215,16%,46%);
+  --border:   hsl(36,18%,85%);
+  --border-d: hsl(36,18%,78%);
+  --soft:     hsl(36,22%,92%);
+  --serif:    'Fraunces',Georgia,serif;
+  --sans:     'Outfit',system-ui,sans-serif;
+}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;padding-top:64px;-webkit-font-smoothing:antialiased}
+
+::selection{background:var(--terra);color:var(--cream)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;height:64px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:200;border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-brand{text-decoration:none;display:flex;align-items:center;gap:12px}
+.logo-tri{display:block;flex-shrink:0}
+.logo-tri polygon{fill:none;stroke:var(--terra);stroke-linejoin:round}
+.nav-brand-text{display:flex;flex-direction:column;gap:1px}
+.nav-brand-name{font-family:var(--serif);font-size:14px;color:var(--cream);line-height:1;letter-spacing:-.005em}
+.nav-brand-sub{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase;font-weight:500;font-family:var(--sans);margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-link{padding:7px 14px;color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;font-weight:400;border-radius:6px;transition:color .2s}
+.nav-link:hover{color:var(--cream)}
+.nav-btn{padding:9px 18px;background:var(--terra);color:#fff;font-size:12px;font-weight:600;border-radius:7px;text-decoration:none;margin-left:12px;transition:all .2s;font-family:var(--sans);letter-spacing:.01em}
+.nav-btn:hover{background:var(--terra-d);transform:translateY(-1px)}
+.nav-burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.nav-burger span{display:block;width:20px;height:2px;background:var(--cream);border-radius:2px}
+.drawer{display:none;position:fixed;top:64px;left:0;right:0;background:var(--ink);z-index:199;flex-direction:column;padding:12px 24px 24px;border-top:1px solid rgba(255,255,255,.07)}
+.drawer.open{display:flex}
+.drawer a{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.drawer a:last-child{color:var(--terra);font-weight:700;border:none}
+
+/* ── SHARED ── */
+.section{padding:120px 72px;position:relative}
+.section-sm{padding:88px 72px}
+.soft{background:var(--soft)}
+.dark{background:var(--ink);color:var(--cream)}
+.cream-2{background:var(--cream-2)}
+.terra-bg{background:var(--terra)}
+.inner{max-width:1180px;margin:0 auto}
+.lbl{display:inline-flex;align-items:center;gap:14px;margin-bottom:28px}
+.lbl::before{content:'';width:36px;height:1px;background:var(--terra);flex-shrink:0}
+.lbl span{font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--terra)}
+.lbl-lt::before{background:rgba(255,255,255,.28)}
+.lbl-lt span{color:rgba(255,255,255,.45)}
+
+.h-xl{font-family:var(--serif);font-size:clamp(40px,5.6vw,80px);line-height:1.02;font-weight:300;letter-spacing:-.02em}
+.h-xl em{font-style:italic;font-weight:400}
+.h-lg{font-family:var(--serif);font-size:clamp(32px,3.6vw,52px);line-height:1.1;font-weight:400;letter-spacing:-.015em}
+.h-lg em{font-style:italic;color:var(--terra)}
+.h-md{font-family:var(--serif);font-size:clamp(24px,2.6vw,36px);line-height:1.18;font-weight:400;letter-spacing:-.01em}
+.h-md em{font-style:italic;color:var(--terra)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;font-family:var(--sans);transition:all .2s;cursor:pointer;border:none;letter-spacing:.01em}
+.btn-arrow{display:inline-block;transition:transform .2s}
+.btn:hover .btn-arrow{transform:translateX(3px)}
+.btn-t{background:var(--terra);color:#fff}
+.btn-t:hover{background:var(--terra-d);transform:translateY(-1px);box-shadow:0 6px 24px rgba(199,94,55,.28)}
+.btn-g{border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.82);background:transparent}
+.btn-g:hover{border-color:rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.04)}
+.btn-ink{background:var(--ink);color:var(--cream)}
+.btn-ink:hover{background:var(--ink-soft);transform:translateY(-1px)}
+.btn-outline{border:1px solid var(--border-d);color:var(--ink);background:transparent}
+.btn-outline:hover{border-color:var(--terra);color:var(--terra)}
+
+/* ── HERO ── */
+.hero{min-height:calc(100vh - 64px);background:var(--ink);display:flex;align-items:stretch;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.2;filter:contrast(1.05) saturate(.9)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,var(--ink) 42%,hsla(215,45%,14%,.78) 68%,hsla(215,45%,14%,.3) 100%)}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.3fr 1fr;width:100%;align-items:center}
+.hero-body{padding:72px 56px 72px 72px;max-width:760px;animation:fadeUp .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--terra);margin-bottom:26px}
+.hero-eyebrow::before{content:'';width:22px;height:1px;background:var(--terra)}
+.hero h1{color:var(--cream)}
+.hero h1 em{color:var(--terra)}
+.hero-ethos{display:inline-flex;align-items:center;gap:14px;margin-top:28px;padding:8px 16px 8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:100px;background:rgba(255,255,255,.03)}
+.hero-ethos-dot{width:7px;height:7px;border-radius:50%;background:var(--terra);flex-shrink:0;box-shadow:0 0 0 4px rgba(199,94,55,.15)}
+.hero-ethos-text{font-family:var(--serif);font-style:italic;font-size:15px;color:rgba(255,255,255,.78);font-weight:400}
+.hero-p{font-size:17px;color:rgba(255,255,255,.6);line-height:1.75;margin-top:30px;max-width:540px;font-weight:300}
+.hero-p strong{color:rgba(255,255,255,.92);font-weight:500}
+.hero-btns{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
+.hero-chips{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+.chip{padding:6px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:11px;color:rgba(255,255,255,.42);font-weight:500;letter-spacing:.01em}
+.chip strong{color:rgba(255,255,255,.72);font-weight:600}
+
+.hero-side{padding:72px 72px 72px 0;display:flex;flex-direction:column;justify-content:flex-end;gap:0;animation:fadeIn 1.3s .3s both}
+.hero-meta{border-left:1px solid rgba(255,255,255,.1);padding:20px 0 20px 28px;margin-bottom:2px}
+.hero-meta-lbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.35);margin-bottom:10px}
+.hero-meta-val{font-family:var(--serif);font-size:28px;color:var(--cream);font-weight:300;line-height:1;letter-spacing:-.01em}
+.hero-meta-val em{font-style:italic;color:var(--terra);font-weight:400}
+.hero-meta-sub{font-size:12px;color:rgba(255,255,255,.42);margin-top:8px;line-height:1.5}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ── MARQUEE / CREDIBILITY STRIP ── */
+.strip{background:var(--cream);border-bottom:1px solid var(--border);padding:22px 72px;overflow:hidden}
+.strip-inner{display:flex;align-items:center;gap:48px;font-size:12px;color:var(--ink-muted);justify-content:space-between;flex-wrap:wrap;max-width:1180px;margin:0 auto}
+.strip-item{display:flex;align-items:center;gap:10px;font-weight:500}
+.strip-item svg{width:14px;height:14px;stroke:var(--terra);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.strip-dot{width:3px;height:3px;border-radius:50%;background:var(--border-d)}
+
+/* ── INTRO / VALUE PROP ── */
+.intro-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:96px;align-items:start}
+.intro-lead{position:sticky;top:120px}
+.intro-lead h2{margin-bottom:20px}
+.intro-lead-sig{margin-top:32px;display:flex;align-items:center;gap:14px}
+.intro-lead-sig-mark{width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.intro-lead-sig-mark svg{width:100%;height:100%}
+.intro-lead-sig-mark polygon{fill:none;stroke:var(--terra);stroke-width:2;stroke-linejoin:round}
+.intro-lead-sig-text{font-size:13px;color:var(--ink-muted);line-height:1.5}
+.intro-lead-sig-text strong{color:var(--ink);font-weight:600;display:block;font-size:14px;margin-bottom:1px}
+.intro-points{display:flex;flex-direction:column;gap:0}
+.intro-point{padding:28px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:48px 1fr;gap:22px;align-items:start}
+.intro-point:first-child{padding-top:0}
+.intro-point:last-child{border-bottom:none}
+.intro-point-num{font-family:var(--serif);font-size:32px;font-weight:300;color:var(--terra);line-height:1;font-style:italic;letter-spacing:-.02em}
+.intro-point-head{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--ink);line-height:1.25;margin-bottom:8px;letter-spacing:-.01em}
+.intro-point-body{font-size:14px;color:var(--ink-muted);line-height:1.75}
+
+/* ── COACHING PHASES (reimagined as a timeline) ── */
+.coach-intro{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:end;margin-bottom:72px}
+.coach-intro-r{padding-bottom:8px}
+.coach-intro-r p{font-size:15px;color:var(--ink-muted);line-height:1.8}
+
+.phases{display:flex;flex-direction:column}
+.phase{display:grid;grid-template-columns:240px 1fr;gap:56px;padding:56px 0;border-top:1px solid var(--border)}
+.phase:last-of-type{border-bottom:1px solid var(--border)}
+.phase-head{position:sticky;top:100px;align-self:start}
+.phase-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--terra);margin-bottom:14px}
+.phase-tag-num{display:inline-flex;width:22px;height:22px;border-radius:50%;border:1px solid var(--terra);color:var(--terra);font-family:var(--serif);font-size:12px;font-style:italic;align-items:center;justify-content:center;letter-spacing:0}
+.phase-name{font-family:var(--serif);font-size:44px;font-weight:400;color:var(--ink);line-height:.95;margin-bottom:14px;letter-spacing:-.02em}
+.phase-duration{display:inline-block;font-size:11px;color:var(--ink-muted);font-weight:500;padding:4px 10px;border:1px solid var(--border-d);border-radius:100px;letter-spacing:.02em}
+.phase-pitch{font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:18px;font-family:var(--serif);font-style:italic;max-width:200px}
+
+.phase-body{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.phase-col-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.phase-col-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.phase-items{display:flex;flex-direction:column;gap:18px}
+.phase-item{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start}
+.phase-item-bullet{width:7px;height:7px;border-radius:50%;background:var(--terra);margin-top:7px}
+.phase-item strong{display:block;color:var(--ink);font-weight:600;font-size:13px;margin-bottom:4px;letter-spacing:-.003em}
+.phase-item span{font-size:13px;color:var(--ink-muted);line-height:1.6}
+.phase-del{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;margin-bottom:18px}
+.phase-del:last-child{margin-bottom:0}
+.del-badge{width:22px;height:22px;border-radius:6px;background:hsl(18,62%,56%,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.del-badge svg{width:11px;height:11px;stroke:var(--terra);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.phase-del strong{display:block;color:var(--ink);font-weight:600;font-size:13px;margin-bottom:4px}
+.phase-del span{font-size:13px;color:var(--ink-muted);line-height:1.6}
+
+.phases-cta{margin-top:64px;background:var(--ink);border-radius:20px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;position:relative;overflow:hidden}
+.phases-cta::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(199,94,55,.22),transparent 70%)}
+.phases-cta-text{position:relative;z-index:1}
+.phases-cta-text h4{font-family:var(--serif);font-size:28px;color:var(--cream);font-weight:400;margin-bottom:8px;letter-spacing:-.01em}
+.phases-cta-text p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.65;max-width:520px}
+.phases-cta .btn{position:relative;z-index:1}
+
+/* ── EDSCALE ── */
+.es-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:80px;align-items:center}
+.es-copy p{font-size:15px;color:var(--ink-muted);line-height:1.85;margin-top:18px;max-width:500px}
+.es-copy p strong{color:var(--ink);font-weight:600}
+.es-features{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:4px;border-top:1px solid var(--border)}
+.es-feat{padding:22px 0;border-bottom:1px solid var(--border);padding-right:18px}
+.es-feat:nth-child(odd){border-right:1px solid var(--border);padding-right:24px}
+.es-feat:nth-child(even){padding-left:24px}
+.es-feat-icon{width:32px;height:32px;border-radius:8px;background:hsl(18,62%,56%,.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.es-feat-icon svg{width:15px;height:15px;stroke:var(--terra);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.es-feat-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;letter-spacing:-.003em}
+.es-feat-body{font-size:12.5px;color:var(--ink-muted);line-height:1.6}
+
+/* Product mockup */
+.mockup-wrap{position:relative}
+.mockup-wrap::before{content:'';position:absolute;inset:-24px;background:radial-gradient(ellipse at center,rgba(199,94,55,.08),transparent 70%);border-radius:40px;z-index:0}
+.mockup{position:relative;background:var(--ink);border-radius:18px;overflow:hidden;box-shadow:0 32px 80px -20px rgba(20,32,50,.32),0 0 0 1px rgba(0,0,0,.04);z-index:1}
+.m-bar{background:hsl(215,45%,11%);padding:11px 16px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.04)}
+.m-dot{width:9px;height:9px;border-radius:50%}
+.m-url{background:rgba(255,255,255,.05);border-radius:5px;padding:4px 12px;font-size:10px;color:rgba(255,255,255,.32);font-family:'SF Mono',Menlo,monospace;margin-left:10px;letter-spacing:.02em}
+.m-body{padding:22px}
+.m-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.m-title{font-family:var(--serif);font-size:16px;color:var(--cream);font-weight:500}
+.m-title em{font-style:italic;color:var(--terra);font-weight:400}
+.m-badge{padding:3px 9px;background:rgba(199,94,55,.15);color:var(--terra-l);font-size:9px;border-radius:4px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.m-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.m-stat{background:rgba(255,255,255,.04);border-radius:10px;padding:14px;position:relative;overflow:hidden}
+.m-stat-n{font-family:var(--serif);font-size:26px;color:var(--terra);font-weight:300;line-height:1;letter-spacing:-.01em}
+.m-stat-n em{font-style:italic}
+.m-stat-l{font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;margin-top:6px;font-weight:600}
+.m-stat-trend{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
+.m-trend-up{color:hsl(150,60%,60%);background:hsla(150,60%,60%,.12)}
+.m-trend-dn{color:hsl(0,70%,68%);background:hsla(0,70%,68%,.12)}
+.m-sect{background:rgba(255,255,255,.03);border-radius:10px;padding:14px;margin-bottom:8px}
+.m-sect:last-child{margin-bottom:0}
+.m-sect-lbl{font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.11em;font-weight:600;margin-bottom:11px}
+.m-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.m-row:last-child{margin-bottom:0}
+.m-av{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:600;font-family:var(--serif);font-style:italic}
+.m-name{font-size:11px;color:rgba(255,255,255,.55);flex:1}
+.m-name em{color:rgba(255,255,255,.32);font-style:normal;font-weight:400}
+.m-track{flex:1.4;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;position:relative}
+.m-fill{height:100%;border-radius:3px;position:relative}
+.m-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2));border-radius:3px}
+.m-pct{font-size:11px;font-weight:600;flex-shrink:0;width:32px;text-align:right;font-variant-numeric:tabular-nums}
+.m-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.m-tag{padding:3px 9px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:.03em;font-family:'SF Mono',Menlo,monospace}
+.m-tag-alert{background:hsla(18,62%,58%,.18);color:var(--terra-l)}
+.m-tag-neutral{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4)}
+
+/* floating badge on mockup */
+.mockup-float{position:absolute;top:-14px;right:-14px;background:var(--cream);border-radius:12px;padding:12px 16px;box-shadow:0 8px 32px rgba(20,32,50,.18);z-index:2;display:flex;align-items:center;gap:10px}
+.mockup-float-ico{width:28px;height:28px;border-radius:8px;background:var(--terra);display:flex;align-items:center;justify-content:center}
+.mockup-float-ico svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mockup-float-text{font-size:10px;color:var(--ink-muted);line-height:1.3}
+.mockup-float-text strong{display:block;font-family:var(--serif);color:var(--ink);font-size:12px;font-weight:500;font-style:italic}
+
+/* ── WHO WE HELP (REBUILT) ── */
+.who-head{display:grid;grid-template-columns:.8fr 1fr;gap:72px;align-items:end;margin-bottom:64px}
+.who-head p{font-size:15px;color:rgba(255,255,255,.55);line-height:1.8;max-width:480px;padding-bottom:10px}
+.paths-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid rgba(255,255,255,.1);border-left:1px solid rgba(255,255,255,.1)}
+.path{padding:40px;border-right:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);transition:background .3s;position:relative;display:flex;flex-direction:column}
+.path:hover{background:rgba(255,255,255,.02)}
+.path-quote{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--cream);line-height:1.25;margin-bottom:14px;letter-spacing:-.01em;font-style:italic}
+.path-quote::before{content:'"';color:var(--terra);font-family:var(--serif);font-style:italic;margin-right:2px}
+.path-quote::after{content:'"';color:var(--terra);font-family:var(--serif);font-style:italic;margin-left:2px}
+.path-body{font-size:13.5px;color:rgba(255,255,255,.58);line-height:1.75;margin-bottom:22px;flex:1}
+.path-rec{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--terra);letter-spacing:.02em;margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.path-rec-arrow{font-size:14px;transition:transform .2s}
+.path:hover .path-rec-arrow{transform:translateX(3px)}
+.path-highlight{background:linear-gradient(135deg,hsla(18,62%,56%,.14),hsla(18,62%,56%,.03))}
+.path-highlight:hover{background:linear-gradient(135deg,hsla(18,62%,56%,.2),hsla(18,62%,56%,.06))}
+
+/* ── APPROACH / FOUNDER (NEW) ── */
+.approach{display:grid;grid-template-columns:.45fr .55fr;gap:72px;align-items:center}
+.approach-img{aspect-ratio:4/5;background:var(--ink);border-radius:16px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:44px;color:var(--cream)}
+.approach-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,32,50,.4) 0%,transparent 40%,rgba(20,32,50,.85) 100%);z-index:1;pointer-events:none}
+.approach-tri{position:absolute;top:50%;left:50%;transform:translate(-50%,-48%);width:78%;opacity:.6;z-index:0}
+.approach-tri polygon{fill:none;stroke:var(--terra);stroke-width:1.2;stroke-linejoin:round}
+.approach-tri-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-48%);width:48%;opacity:.3;z-index:0}
+.approach-tri-bg polygon{fill:none;stroke:var(--terra);stroke-width:1.4;stroke-linejoin:round}
+.approach-img-tag{position:relative;z-index:2;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--terra);display:inline-flex;align-items:center;gap:10px}
+.approach-img-tag::before{content:'';width:22px;height:1px;background:var(--terra)}
+.approach-img-headline{position:relative;z-index:2;font-family:var(--serif);font-size:clamp(30px,3.4vw,44px);font-weight:400;line-height:1.1;letter-spacing:-.015em;color:var(--cream)}
+.approach-img-headline em{font-style:italic;color:var(--terra-l);font-weight:400}
+.approach-img-headline .pd{color:var(--terra);font-style:normal;font-family:var(--serif)}
+.approach-img-foot{position:relative;z-index:2;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;font-weight:600;font-family:var(--sans)}
+.approach-copy h2{margin-bottom:24px}
+.approach-copy p{font-size:15px;color:var(--ink-muted);line-height:1.85;margin-bottom:16px}
+.approach-copy p strong{color:var(--ink);font-weight:600}
+.approach-quote{margin-top:32px;padding:24px 28px;background:var(--cream);border-left:3px solid var(--terra);border-radius:4px 12px 12px 4px;font-family:var(--serif);font-size:17px;font-style:italic;color:var(--ink);line-height:1.55;font-weight:400}
+
+/* ── DEMO/CONTACT ── */
+.demo-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.demo-copy h2{color:#fff}
+.demo-copy h2 em{color:rgba(255,255,255,.65)}
+.demo-copy p{font-size:16px;color:rgba(255,255,255,.65);margin-top:20px;line-height:1.8;font-weight:300}
+.demo-copy small{display:block;font-size:11px;color:rgba(255,255,255,.35);margin-top:14px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.demo-direct{margin-top:32px;padding:18px 22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.demo-direct-l{font-family:var(--serif);font-size:14px;font-style:italic;color:rgba(255,255,255,.85)}
+.demo-direct-l strong{color:#fff;font-style:normal;font-weight:600;font-family:var(--sans)}
+.demo-direct a{color:#fff;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(255,255,255,.12);border-radius:6px;transition:background .2s}
+.demo-direct a:hover{background:rgba(255,255,255,.2)}
+
+.form-box{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px}
+.f-title{font-family:var(--serif);font-size:22px;color:#fff;margin-bottom:4px;font-weight:400;letter-spacing:-.005em}
+.f-sub{font-size:12.5px;color:rgba(255,255,255,.45);margin-bottom:22px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.11em;text-transform:uppercase;margin-bottom:6px}
+.field input,.field select{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:11px 13px;font-size:14px;color:#fff;font-family:var(--sans);outline:none;transition:all .2s}
+.field input::placeholder{color:rgba(255,255,255,.3)}
+.field input:focus,.field select:focus{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.14)}
+.field select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' opacity='0.5'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.field select option{background:var(--ink);color:var(--cream)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f-btn{width:100%;padding:13px;background:#fff;color:var(--terra-d);border:none;border-radius:8px;font-size:14px;font-weight:700;font-family:var(--sans);cursor:pointer;margin-top:8px;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.01em}
+.f-btn:hover{opacity:.94;transform:translateY(-1px);box-shadow:0 8px 28px rgba(0,0,0,.18)}
+.f-note{font-size:10.5px;color:rgba(255,255,255,.3);text-align:center;margin-top:10px;letter-spacing:.02em}
+.f-thanks{display:none;text-align:center;padding:30px 20px}
+.f-thanks.show{display:block}
+.f-thanks-ico{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px;color:#fff}
+.f-thanks-title{font-family:var(--serif);font-size:24px;color:#fff;font-weight:400}
+.f-thanks-body{font-size:13.5px;color:rgba(255,255,255,.7);margin-top:10px;line-height:1.7}
+.f-thanks-body a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* ── FOOTER ── */
+footer{background:hsl(215,45%,10%);padding:56px 72px 28px;border-top:1px solid rgba(255,255,255,.04)}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:56px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.ft-brand{display:flex;flex-direction:column;gap:14px}
+.ft-brand-top{display:flex;align-items:center;gap:12px}
+.ft-mark{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-mark svg{width:100%;height:100%}
+.ft-mark polygon{fill:none;stroke:var(--terra);stroke-width:2;stroke-linejoin:round}
+.ft-brand-name{font-family:var(--serif);font-size:17px;color:var(--cream);font-weight:400;letter-spacing:-.005em;line-height:1.1}
+.ft-brand-name span{display:block;font-size:10px;color:rgba(255,255,255,.35);margin-top:4px;letter-spacing:.12em;font-family:var(--sans);text-transform:uppercase;font-weight:500}
+.ft-tag{font-family:var(--serif);font-style:italic;font-size:15px;color:rgba(255,255,255,.5);max-width:340px;line-height:1.5;margin-top:4px}
+.ft-col h5{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;font-weight:700}
+.ft-col a{display:block;font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;margin-bottom:10px;transition:color .18s}
+.ft-col a:hover{color:var(--terra)}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:24px}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.02em}
+.ft-social{display:flex;gap:10px}
+.ft-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:rgba(255,255,255,.5)}
+.ft-social a:hover{border-color:var(--terra);color:var(--terra);transform:translateY(-2px)}
+.ft-social svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── STICKY ── */
+.sticky{position:fixed;bottom:0;left:0;right:0;background:var(--ink);border-top:1px solid rgba(255,255,255,.07);padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:190;transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.sticky.show{transform:none}
+.sticky-msg{font-family:var(--serif);font-size:14px;color:rgba(255,255,255,.65);font-style:italic}
+.sticky-msg strong{color:var(--terra);font-style:normal;font-weight:600;font-family:var(--sans)}
+.sticky-acts{display:flex;align-items:center;gap:10px}
+.sticky-btn{padding:9px 18px;background:var(--terra);color:#fff;font-size:12px;font-weight:600;border-radius:7px;text-decoration:none;white-space:nowrap;transition:background .2s}
+.sticky-btn:hover{background:var(--terra-d)}
+.sticky-x{background:none;border:none;color:rgba(255,255,255,.3);font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
+.sticky-x:hover{color:rgba(255,255,255,.6)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-side{display:none}
+  .intro-grid,.coach-intro,.es-grid,.approach,.demo-wrap,.who-head{grid-template-columns:1fr;gap:40px}
+  .intro-lead{position:static}
+  .phase{grid-template-columns:1fr;gap:32px}
+  .phase-head{position:static}
+  .phase-body{grid-template-columns:1fr;gap:40px}
+  .paths-grid{grid-template-columns:1fr}
+  .approach-img{aspect-ratio:16/10;max-height:360px}
+  .ft-top{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:860px){
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .section{padding:72px 28px}
+  .section-sm{padding:56px 28px}
+  .strip{padding:18px 28px}
+  .hero-body{padding:56px 28px}
+  footer{padding:40px 28px 20px}
+  .phases-cta{flex-direction:column;text-align:center;padding:32px 28px}
+  .es-features{grid-template-columns:1fr}
+  .es-feat:nth-child(odd){border-right:none;padding-right:0}
+  .es-feat:nth-child(even){padding-left:0}
+  .ft-top{grid-template-columns:1fr;gap:32px;padding-bottom:32px}
+  .ft-bottom{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:640px){
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn{justify-content:center}
+  .f-row{grid-template-columns:1fr}
+  .sticky-msg{display:none}
+  .section{padding:56px 20px}
+  .hero-body{padding:40px 20px 56px}
+  .phase-name{font-size:36px}
+  .strip-inner{gap:20px;justify-content:flex-start}
+  .strip-dot{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY -->
+<div class="sticky" id="sticky">
+  <span class="sticky-msg">Ready to talk? <strong>Free 30-min call.</strong> Just questions about your school.</span>
+  <div class="sticky-acts">
+    <a href="#contact" class="sticky-btn">Get in Touch</a>
+    <button class="sticky-x" id="sx" aria-label="Dismiss">×</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <a class="nav-brand" href="#">
+    <svg class="logo-tri" width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,4 29,27 3,27" stroke-width="2.2"/></svg>
+    <span class="nav-brand-text">
+      <span class="nav-brand-name">Balanced Education Partners</span>
+      <span class="nav-brand-sub">K–6 Math · Indiana</span>
+    </span>
+  </a>
+  <nav class="nav-links">
+    <a class="nav-link" href="#approach">Approach</a>
+    <a class="nav-link" href="#coaching">Coaching</a>
+    <a class="nav-link" href="#edscale">EdScale</a>
+    <a class="nav-link" href="#who">Who We Help</a>
+    <a class="nav-btn" href="#contact">Book a Call</a>
+  </nav>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+<div class="drawer" id="drawer">
+  <a href="#approach">Our Approach</a>
+  <a href="#coaching">Coaching Engagements</a>
+  <a href="#edscale">EdScale Platform</a>
+  <a href="#who">Who We Help</a>
+  <a href="#contact">Book a Free Call &rarr;</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://media.base44.com/images/public/69c4159b1919b19f61983b51/922bfabc9_generated_6fdbd048.png" alt="" loading="eager"/>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-body">
+      <div class="hero-eyebrow">Indiana K–6 Math Partners</div>
+      <h1 class="h-xl">Better math outcomes<br>for <em>every student.</em></h1>
+      <div class="hero-ethos">
+        <span class="hero-ethos-dot"></span>
+        <span class="hero-ethos-text">Best for kids. Sustainable for adults.</span>
+      </div>
+      <p class="hero-p">We embed with Indiana school leadership teams to understand where you are, build a plan around your students, and stay <strong>in the building</strong> as you implement it. We show up monthly, in your classrooms and your PLCs, until the work holds.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-t">Book a Free Call <span class="btn-arrow">&rarr;</span></a>
+        <a href="#coaching" class="btn btn-g">See How We Work</a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip"><strong>ILEARN</strong> aligned</span>
+        <span class="chip">K–6 <strong>math focus</strong></span>
+        <span class="chip">Embedded <strong>coaching</strong></span>
+        <span class="chip"><strong>EdScale</strong> included</span>
+      </div>
+    </div>
+    <aside class="hero-side">
+      <div class="hero-meta">
+        <div class="hero-meta-lbl">Focus</div>
+        <div class="hero-meta-val">Grades <em>K–6</em></div>
+        <div class="hero-meta-sub">Elementary math — where the foundations are built.</div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-lbl">Approach</div>
+        <div class="hero-meta-val"><em>Embedded</em></div>
+        <div class="hero-meta-sub">Monthly on-site. In your classrooms, in your PLCs.</div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-lbl">Platform</div>
+        <div class="hero-meta-val">EdScale <em>included</em></div>
+        <div class="hero-meta-sub">Standards explorer, AI lesson planner, data dashboards.</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ═══ CREDIBILITY STRIP ═══ -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      ILEARN &amp; IDOE item-spec aligned
+    </div>
+    <span class="strip-dot"></span>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Built around your staff and students
+    </div>
+    <span class="strip-dot"></span>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Proprietary EdScale platform included
+    </div>
+    <span class="strip-dot"></span>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Custom scopes from 1 to 12 months
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INTRO / WHAT WE DO ═══ -->
+<section class="section reveal">
+  <div class="inner">
+    <div class="intro-grid">
+      <div class="intro-lead">
+        <div class="lbl"><span>What We Do</span></div>
+        <h2 class="h-lg">We're in the building.<br><em>Month after month.</em></h2>
+        <div class="intro-lead-sig">
+          <div class="intro-lead-sig-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,4 29,27 3,27"/></svg></div>
+          <div class="intro-lead-sig-text">
+            <strong>The BEP Team</strong>
+            Former Indiana teachers, coaches &amp; principals
+          </div>
+        </div>
+      </div>
+      <div class="intro-points">
+        <div class="intro-point">
+          <div class="intro-point-num">01</div>
+          <div>
+            <div class="intro-point-head">We work alongside your team.</div>
+            <div class="intro-point-body">Your teachers, coaches, principals, and curriculum leaders are the ones doing the work. Our job is to be in it with them. We sit in PLCs, plan alongside grade-level teams, and build decisions together with the staff who know your students best. Month after month, as a member of the team.</div>
+          </div>
+        </div>
+        <div class="intro-point">
+          <div class="intro-point-num">02</div>
+          <div>
+            <div class="intro-point-head">We know Indiana math.</div>
+            <div class="intro-point-body">Every one of our engagements is built around ILEARN, IDOE Checkpoints, and item specifications. Indiana standards, Indiana language. We speak your teachers' language because we've taught in their rooms.</div>
+          </div>
+        </div>
+        <div class="intro-point">
+          <div class="intro-point-num">03</div>
+          <div>
+            <div class="intro-point-head">Best for kids. Sustainable for adults.</div>
+            <div class="intro-point-body">Every plan we build has to move student outcomes <em>and</em> survive past October. That means pacing your staff can hold, routines that fit the day they already have, and changes that still exist in the building a year from now.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COACHING PHASES ═══ -->
+<section class="section soft reveal" id="coaching">
+  <div class="inner">
+    <div class="coach-intro">
+      <div>
+        <div class="lbl"><span>Coaching Engagements</span></div>
+        <h2 class="h-lg">Four ways we can<br><em>work with your school.</em></h2>
+      </div>
+      <div class="coach-intro-r">
+        <p>Every engagement is scoped to where you are. Start with a one-month Audit, move through Design and Implementation, or build a custom partnership around a specific priority. Each stands on its own, and each includes EdScale for your team.</p>
+      </div>
+    </div>
+
+    <div class="phases">
+
+      <!-- AUDIT -->
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-tag"><span class="phase-tag-num">1</span> Phase One</div>
+          <div class="phase-name">Audit</div>
+          <span class="phase-duration">1 Month</span>
+          <p class="phase-pitch">Before we build anything, we find out what's really going on.</p>
+        </div>
+        <div class="phase-body">
+          <div>
+            <div class="phase-col-label">Our Work</div>
+            <div class="phase-items">
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Data &amp; Assessment Review</strong><span>Analyze ILEARN, Checkpoints, and internal data to identify priority gaps and trends.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Curriculum &amp; Planning Alignment</strong><span>Audit current pacing and materials against IDOE item specs and standards rigor.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Instructional Practice Insight</strong><span>Observe math instruction to assess alignment, engagement, and cognitive demand.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Systems &amp; Staff Support Review</strong><span>Evaluate how current roles, data practices, and PD structures support math outcomes.</span></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="phase-col-label">What You Walk Away With</div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Math Performance Profile</strong><span>Strengths, gaps, and trends across grades tied to ILEARN and Checkpoint data.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Aligned Curriculum Snapshot</strong><span>How your current materials and plans align (or don't) with IDOE item specs.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Instructional Practice Summary</strong><span>Classroom observation takeaways and high-leverage areas for growth.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Strategic Action Map</strong><span>A practical plan outlining next steps for instructional focus and team support.</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESIGN -->
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-tag"><span class="phase-tag-num">2</span> Phase Two</div>
+          <div class="phase-name">Design</div>
+          <span class="phase-duration">3 Months</span>
+          <p class="phase-pitch">We build a plan your team uses every week.</p>
+        </div>
+        <div class="phase-body">
+          <div>
+            <div class="phase-col-label">Our Work</div>
+            <div class="phase-items">
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Collaborative Focus Area Selection</strong><span>Meet with leadership to pick 1–2 math priorities based on your school's data.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Pacing &amp; Assessment Planning</strong><span>Build or adjust a math pacing calendar aligned to Checkpoints, item specs, and ILEARN.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Team Support Toolkit</strong><span>Equip leaders and coaches with planning tools, observation look-fors, and PD decks.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Mini Learning Cycle</strong><span>Facilitate a 3–4 week try-it phase on one focus area with a light feedback loop.</span></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="phase-col-label">What You Walk Away With</div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Targeted Math Focus Plan</strong><span>A school-selected priority with clear next steps and success indicators.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Aligned Pacing Calendar</strong><span>A practical pacing map incorporating Checkpoints, priority standards, and ILEARN alignment.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>PD + Coaching Toolkit</strong><span>Ready-to-use planning guides, look-for tools, and slides for internal PD.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Math Strategy Integration Map</strong><span>A one-page view of how meetings, roles, and routines support your math strategy.</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMPLEMENT -->
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-tag"><span class="phase-tag-num">3</span> Phase Three</div>
+          <div class="phase-name">Implement</div>
+          <span class="phase-duration">10 Months</span>
+          <p class="phase-pitch">We stay through the hard middle. The part where plans usually collapse.</p>
+        </div>
+        <div class="phase-body">
+          <div>
+            <div class="phase-col-label">Our Work</div>
+            <div class="phase-items">
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Monthly Coaching &amp; Progress Monitoring</strong><span>Regular check-ins with school leaders to adjust strategies based on real-time data.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Checkpoint + ILEARN Strategy</strong><span>A clear assessment roadmap with routines for Checkpoints and ILEARN prep.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Learning Cycle Implementation</strong><span>Lead 2–3 focused sprints with turnkey PD tools and classroom-ready resources.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Data Systems + Mid-Year Recalibration</strong><span>Build data systems and conduct a mid-year reset with a year-end reflection.</span></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="phase-col-label">What You Walk Away With</div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Full-Year ILEARN + Checkpoint Strategy</strong><span>A pacing-aligned assessment plan that supports standards mastery and state readiness.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Custom Data Collection System</strong><span>Tools and guidance for gathering and using data in leadership, coaching, and PLCs.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Embedded Learning Cycles</strong><span>2–3 focused implementation sprints with ready-made materials and PD support.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Year-End Strategy Summary</strong><span>A closing report and next-year roadmap to sustain and build on the work.</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOM -->
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-tag"><span class="phase-tag-num">+</span> Custom Scope</div>
+          <div class="phase-name">Tailored</div>
+          <span class="phase-duration">Built around you</span>
+          <p class="phase-pitch">When your situation doesn't fit a box, we build the box.</p>
+        </div>
+        <div class="phase-body">
+          <div>
+            <div class="phase-col-label">Our Work</div>
+            <div class="phase-items">
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Scoping Conversation</strong><span>We start with a real conversation about where your school is, what's working, and what you need most.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Custom Engagement Design</strong><span>Scope built around your specific goals, timeline, and budget: sprint, PD series, or ongoing partnership.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Flexible Delivery</strong><span>On-site, virtual, or hybrid. One month or one year. Structured around your team's capacity.</span></div></div>
+              <div class="phase-item"><span class="phase-item-bullet"></span><div><strong>Clear Accountability Cadence</strong><span>Defined check-ins, a named point of contact, and measurable milestones baked into the scope.</span></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="phase-col-label">What You Walk Away With</div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>A Plan Built for Your School</strong><span>Support designed around your data, staff, and goals, scoped before the work begins.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Clear Scope &amp; Deliverables</strong><span>You'll know exactly what we're doing, what you'll have at the end, and what the commitment is.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>A Consistent Partner</strong><span>Someone who knows your school, your staff, and your students, and stays invested in the outcome.</span></div></div>
+            <div class="phase-del"><div class="del-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>EdScale for Your Team</strong><span>Like every engagement, custom work includes full platform access during our partnership.</span></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phases-cta">
+      <div class="phases-cta-text">
+        <h4>Not sure where to start?</h4>
+        <p>Most schools begin with a 30-minute call. We'll ask some questions, get a sense of where you are, and tell you honestly what would help most. Even if it's not us.</p>
+      </div>
+      <a href="#contact" class="btn btn-t">Book a Free Call <span class="btn-arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EDSCALE ═══ -->
+<section class="section reveal" id="edscale">
+  <div class="inner">
+    <div class="es-grid">
+      <div class="es-copy">
+        <div class="lbl"><span>EdScale Platform</span></div>
+        <h2 class="h-lg">Our proprietary platform,<br><em>included in every engagement.</em></h2>
+        <p>EdScale is the software we built specifically for this work. Leaders get real-time data dashboards. Teachers get AI-powered, ILEARN-aligned lesson planning. Coaches get the tools to run precise data meetings.</p>
+        <p><strong>When you partner with us, EdScale comes with it.</strong> Every teacher and leader in your building shares the same set of tools supporting the work we're doing together.</p>
+        <div class="es-features">
+          <div class="es-feat">
+            <div class="es-feat-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <div class="es-feat-title">Standards Explorer</div>
+            <div class="es-feat-body">Every K–6 ILEARN math standard: what it demands, how it connects, what resources support it.</div>
+          </div>
+          <div class="es-feat">
+            <div class="es-feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="es-feat-title">AI Lesson Planner</div>
+            <div class="es-feat-body">ILEARN-aligned lesson plans and practice problems generated in minutes, not hours.</div>
+          </div>
+          <div class="es-feat">
+            <div class="es-feat-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <div class="es-feat-title">Data Center</div>
+            <div class="es-feat-body">Assessment results by standard, grade, and student, so leaders always know where to focus.</div>
+          </div>
+          <div class="es-feat">
+            <div class="es-feat-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="es-feat-title">Coaching Hub</div>
+            <div class="es-feat-body">Data meeting tools, observation notes, and coaching cycle tracking for instructional leaders.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-float">
+          <div class="mockup-float-ico"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="mockup-float-text"><strong>Live now</strong>At every partner school</div>
+        </div>
+        <div class="mockup">
+          <div class="m-bar">
+            <div class="m-dot" style="background:#ff5f57"></div>
+            <div class="m-dot" style="background:#febc2e"></div>
+            <div class="m-dot" style="background:#28c840"></div>
+            <div class="m-url">app.edscale.io/dashboard</div>
+          </div>
+          <div class="m-body">
+            <div class="m-header">
+              <div class="m-title">Grade 4 &middot; <em>Standards</em></div>
+              <span class="m-badge">Live</span>
+            </div>
+            <div class="m-stats">
+              <div class="m-stat">
+                <span class="m-stat-trend m-trend-up">+12%</span>
+                <div class="m-stat-n">4.NF</div>
+                <div class="m-stat-l">Fractions</div>
+              </div>
+              <div class="m-stat">
+                <span class="m-stat-trend m-trend-up">+8%</span>
+                <div class="m-stat-n">4.OA</div>
+                <div class="m-stat-l">Operations</div>
+              </div>
+              <div class="m-stat">
+                <span class="m-stat-trend m-trend-dn">−3%</span>
+                <div class="m-stat-n">4.MD</div>
+                <div class="m-stat-l">Measurement</div>
+              </div>
+            </div>
+            <div class="m-sect">
+              <div class="m-sect-lbl">Class Progress · This Week</div>
+              <div class="m-row">
+                <div class="m-av" style="background:linear-gradient(135deg,hsl(18,62%,60%),hsl(28,62%,50%))">MR</div>
+                <div class="m-name">Ms. Reyes <em>· Rm 12</em></div>
+                <div class="m-track"><div class="m-fill" style="width:78%;background:var(--terra)"></div></div>
+                <div class="m-pct" style="color:var(--terra-l)">78%</div>
+              </div>
+              <div class="m-row">
+                <div class="m-av" style="background:linear-gradient(135deg,hsl(200,60%,55%),hsl(215,60%,45%))">JT</div>
+                <div class="m-name">Mr. Tate <em>· Rm 14</em></div>
+                <div class="m-track"><div class="m-fill" style="width:58%;background:hsl(200,60%,55%)"></div></div>
+                <div class="m-pct" style="color:hsl(200,60%,65%)">58%</div>
+              </div>
+              <div class="m-row">
+                <div class="m-av" style="background:linear-gradient(135deg,hsl(150,50%,50%),hsl(165,50%,40%))">AK</div>
+                <div class="m-name">Ms. Kim <em>· Rm 16</em></div>
+                <div class="m-track"><div class="m-fill" style="width:84%;background:hsl(150,50%,55%)"></div></div>
+                <div class="m-pct" style="color:hsl(150,50%,65%)">84%</div>
+              </div>
+            </div>
+            <div class="m-sect">
+              <div class="m-sect-lbl">Standards needing attention</div>
+              <div class="m-tags">
+                <div class="m-tag m-tag-alert">4.NF.B.3</div>
+                <div class="m-tag m-tag-alert">4.NF.B.4</div>
+                <div class="m-tag m-tag-neutral">4.NBT.A.1</div>
+                <div class="m-tag m-tag-neutral">4.OA.A.2</div>
+                <div class="m-tag m-tag-neutral">4.MD.A.3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ APPROACH / FOUNDER ═══ -->
+<section class="section cream-2 reveal" id="approach">
+  <div class="inner">
+    <div class="approach">
+      <div class="approach-img">
+        <svg class="approach-tri" viewBox="0 0 100 87" aria-hidden="true"><polygon points="50,3 97,84 3,84"/></svg>
+        <svg class="approach-tri-bg" viewBox="0 0 100 87" aria-hidden="true"><polygon points="50,3 97,84 3,84"/></svg>
+        <div class="approach-img-tag">The BEP Standard</div>
+        <div class="approach-img-headline">Best for kids.<br><em>Sustainable</em> for adults.</div>
+        <div class="approach-img-foot">Every plan passes both tests</div>
+      </div>
+      <div class="approach-copy">
+        <div class="lbl"><span>Our Approach</span></div>
+        <h2 class="h-lg">We sit in <em>your building.</em><br>Month after month.</h2>
+        <p>We embed with your leadership team across a full engagement. We show up in classrooms, data meetings, and PLCs on a monthly cadence. Every partnership moves at the pace of your staff and the reality of your calendar.</p>
+        <p>That's harder to scale. It's also what moves student outcomes. <strong>Every partnership is built around one question:</strong> is this plan best for the kids in this building, and can the adults sustain it?</p>
+        <div class="approach-quote">"A real strategy survives past October. It survives a bad week, a staffing change, and the week before spring break."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHO WE HELP ═══ -->
+<section class="section dark reveal" id="who">
+  <div class="inner">
+    <div class="who-head">
+      <div>
+        <div class="lbl lbl-lt"><span>Who We Help</span></div>
+        <h2 class="h-lg" style="color:var(--cream)">The right starting point<br><em style="color:var(--terra)">depends on where you are.</em></h2>
+      </div>
+      <div>
+        <p>Every school comes to us at a different point. Some know exactly what they need. Some are still figuring it out. Here's how we usually match the work to the moment.</p>
+      </div>
+    </div>
+    <div class="paths-grid">
+      <div class="path">
+        <div class="path-quote">We're not sure where our real gaps are.</div>
+        <div class="path-body">You have data but it's not telling you a clear story. You're not sure which standards are the real problems, or whether your materials and pacing align to what ILEARN tests.</div>
+        <div class="path-rec">Start with an Audit <span class="path-rec-arrow">&rarr;</span></div>
+      </div>
+      <div class="path">
+        <div class="path-quote">We know what to change. We need a plan.</div>
+        <div class="path-body">You've done analysis and have a sense of the priorities, but you need help building a practical, school-specific plan your teachers and coaches can run with.</div>
+        <div class="path-rec">Start with Design (3 mo) <span class="path-rec-arrow">&rarr;</span></div>
+      </div>
+      <div class="path">
+        <div class="path-quote">We have a plan. We need someone in it with us.</div>
+        <div class="path-body">You know what to do but implementation keeps stalling. You want a partner who shows up monthly, keeps the work moving, and helps you adjust when things don't go as planned.</div>
+        <div class="path-rec">Start with Implement (10 mo) <span class="path-rec-arrow">&rarr;</span></div>
+      </div>
+      <div class="path">
+        <div class="path-quote">Our situation needs something specific.</div>
+        <div class="path-body">A mid-year ILEARN sprint. A grade-level PD series. A targeted standards alignment project. Your school's situation is specific, and we'll build a custom scope around it.</div>
+        <div class="path-rec">Build a custom scope <span class="path-rec-arrow">&rarr;</span></div>
+      </div>
+      <div class="path path-highlight">
+        <div class="path-quote">I'm not sure what we need yet.</div>
+        <div class="path-body">That's honestly the most common situation. Book a free 30-minute call. We'll ask some questions, look at where your school is, and tell you what we think makes sense. Even if the answer isn't us.</div>
+        <div class="path-rec">Book a free call <span class="path-rec-arrow">&rarr;</span></div>
+      </div>
+      <div class="path">
+        <div class="path-quote">We want someone embedded for the long haul.</div>
+        <div class="path-body">You're not looking for a workshop or a binder. You want someone embedded in your school's work over time, showing up monthly, adjusting as data changes, and building real capacity in your team.</div>
+        <div class="path-rec">Start with Implement (10 mo) <span class="path-rec-arrow">&rarr;</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section terra-bg" id="contact">
+  <div class="inner">
+    <div class="demo-wrap">
+      <div class="demo-copy">
+        <div class="lbl lbl-lt"><span style="color:rgba(255,255,255,.85)">Get Started</span></div>
+        <h2 class="h-lg">Let's figure out<br><em>what fits.</em></h2>
+        <p>Book a free 30-minute call. We'll listen to where your school is, share what we think could help, and give you an honest read on whether a partnership makes sense for your situation.</p>
+        <small>Honest conversation about what your school needs.</small>
+        <div class="demo-direct">
+          <span class="demo-direct-l">Prefer to <strong>grab a time directly?</strong></span>
+          <a href="https://calendly.com/jesse-balancededpartners/30min">Open Calendar &rarr;</a>
+        </div>
+      </div>
+      <div class="form-box">
+        <div id="ff">
+          <div class="f-title">Book a Free Call</div>
+          <div class="f-sub">We'll reach out within one business day.</div>
+          <div class="f-row">
+            <div class="field"><label>First Name</label><input type="text" placeholder="Jane" id="fn"/></div>
+            <div class="field"><label>Last Name</label><input type="text" placeholder="Smith" id="ln"/></div>
+          </div>
+          <div class="field"><label>School Email</label><input type="email" placeholder="jane@yourschool.edu" id="em"/></div>
+          <div class="field"><label>School or District</label><input type="text" placeholder="Lincoln Elementary, Indianapolis" id="sc"/></div>
+          <div class="field">
+            <label>Your Role</label>
+            <select id="rl">
+              <option value="" disabled selected>Select your role&hellip;</option>
+              <option>Principal / Assistant Principal</option>
+              <option>Instructional Coach</option>
+              <option>Curriculum Director</option>
+              <option>Classroom Teacher</option>
+              <option>District Administrator</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>What are you exploring?</label>
+            <select id="it">
+              <option value="" disabled selected>Select one&hellip;</option>
+              <option>Audit (1 month)</option>
+              <option>Design (3 months)</option>
+              <option>Implement (10 months)</option>
+              <option>Custom scope</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <button class="f-btn" onclick="sub()">Send Message <span>&rarr;</span></button>
+          <div class="f-note">We respond within one business day. No spam, ever.</div>
+        </div>
+        <div class="f-thanks" id="ft">
+          <div class="f-thanks-ico">&#10003;</div>
+          <div class="f-thanks-title">Message received.</div>
+          <div class="f-thanks-body">We'll be in touch within one business day. Or <a href="https://calendly.com/jesse-balancededpartners/30min">grab a time on our calendar &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <div class="ft-brand-top">
+        <div class="ft-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,4 29,27 3,27"/></svg></div>
+        <div class="ft-brand-name">Balanced Education Partners<span>Coaching &amp; EdScale · Indiana K–6</span></div>
+      </div>
+      <div class="ft-tag">Better math outcomes for every student. Best for kids. Sustainable for adults.</div>
+    </div>
+    <div class="ft-col">
+      <h5>Partnership</h5>
+      <a href="#coaching">Audit</a>
+      <a href="#coaching">Design</a>
+      <a href="#coaching">Implement</a>
+      <a href="#coaching">Custom Scope</a>
+    </div>
+    <div class="ft-col">
+      <h5>Company</h5>
+      <a href="#approach">Approach</a>
+      <a href="#edscale">EdScale Platform</a>
+      <a href="#who">Who We Help</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">&copy; <span id="yr"></span> Balanced Education Partners. All rights reserved.</div>
+    <div class="ft-social">
+      <a href="mailto:jesse@balancededpartners.com" aria-label="Email">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://calendly.com/jesse-balancededpartners/30min" target="_blank" rel="noopener" aria-label="Schedule">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Mobile drawer
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => drawer.classList.toggle('open'));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+// Sticky bar
+const bar = document.getElementById('sticky');
+document.getElementById('sx').addEventListener('click', () => { bar.dataset.off = 1; bar.classList.remove('show'); });
+window.addEventListener('scroll', () => {
+  if (bar.dataset.off) return;
+  bar.classList.toggle('show', scrollY > window.innerHeight * 0.7);
+}, {passive: true});
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold: 0.08, rootMargin: '0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Form
+function sub() {
+  const n = document.getElementById('fn').value.trim();
+  const e = document.getElementById('em').value.trim();
+  if (!n || !e) { alert('Please enter your name and email to continue.'); return; }
+  document.getElementById('ff').style.display = 'none';
+  document.getElementById('ft').classList.add('show');
+}
+</script>
+</body>
+</html>
